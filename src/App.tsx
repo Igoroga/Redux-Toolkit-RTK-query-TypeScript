@@ -2,9 +2,13 @@ import { useState } from 'react'
 import reactLogo from './assets/react.svg'
 import viteLogo from '/vite.svg'
 import './App.css'
+import { useAppDispatch, useAppSelector } from './hooks/redux'
+import { userSlice } from './store/reducers/UserSlice'
 
 function App() {
-  const [count, setCount] = useState(0)
+    const {count} = useAppSelector(store => store.userReducer)
+    const {increment} = userSlice.actions; 
+    const dispatch = useAppDispatch()
 
   return (
     <>
@@ -18,7 +22,7 @@ function App() {
       </div>
       <h1>Vite + React</h1>
       <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
+        <button onClick={() => dispatch(increment(1))}>
           count is {count}
         </button>
         <p>
