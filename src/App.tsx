@@ -1,38 +1,43 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
+import React, { useEffect } from 'react';
 import './App.css'
 import { useAppDispatch, useAppSelector } from './hooks/redux'
 import { userSlice } from './store/reducers/UserSlice'
+import { fetchUsers } from './store/reducers/ActionCreators';
 
 function App() {
-    const {count} = useAppSelector(store => store.userReducer)
+    const {count, users, isLoading, error} = useAppSelector(store => store.userReducer)
     const {increment} = userSlice.actions; 
     const dispatch = useAppDispatch()
 
+    useEffect(() => {
+      dispatch(fetchUsers())
+      console.log(error);
+      
+    }, []);
+
+    if(isLoading){
+      return (
+        <div>Loading</div>
+      )
+    }
+
+    if(error){
+      return (
+        <div>{error}</div>
+      )
+    }
+    
   return (
     <>
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => dispatch(increment(1))}>
+        <div className="card">
+        <button style={{background:'orange'}} onClick={() => dispatch(increment(1))}>
           count is {count}
         </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
+        {users.map((user) => (
+        <div key={user.id}>{user.name}</div>
+      ))}
+       </div>
+        </>
   )
 }
 
