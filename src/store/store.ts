@@ -6,6 +6,7 @@ const rootReducer = combineReducers({
 userReducer
 })
 
+
 export const setupStore = () => {
     return configureStore({
         reducer: rootReducer
