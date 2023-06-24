@@ -1,0 +1,38 @@
+{
+  "posts": [
+    {
+      "title": "dsadas",
+      "body": "1424",
+      "id": 20
+    },
+    {
+      "title": "sdasda",
+      "body": "adasd",
+      "id": 21
+    },
+    {
+      "title": "adsdsa",
+      "body": "adsdsa",
+      "id": 22
+    },
+    {
+      "title": "dsadas",
+      "body": "dsadas",
+      "id": 23
+    },
+    {
+      "title": "adsdsa",
+      "body": "adsdsa",
+      "id": 24
+    },
+    {
+      "title": "asdasd",
+      "body": "asdasd",
+      "id": 25
+    }
+  ],
+  "comments": [],
+  "profile": {
+    "name": "typicode"
+  }
+}
